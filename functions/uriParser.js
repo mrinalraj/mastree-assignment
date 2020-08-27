@@ -1,3 +1,4 @@
+// own parser on basis of the syntax
 const parser = input => {
 	const output = {}
 
@@ -9,24 +10,15 @@ const parser = input => {
 	// get query string
 	const [uri2, queryString] = uri.split('?')
 	// query is optional
-	queryString &&
-		(output.query = encodeURI(queryString)
-			.split('&')
-			.map(query => {
-				const [key, value] = query.split('=')
-				return { [key]: value }
-			}))
+	queryString && (output.query = encodeURI(queryString).split('&'))
 
 	// get scheme
 	// match first : and replace matching part with empty string to get the remaining string
-	let scheme
 	const remaining = uri2.replace(/[^:]+/, match => {
-		scheme = match
+		// scheme is optional
+		output.scheme = match
 		return ''
 	})
-
-	// scheme is optional
-	scheme && (output.scheme = scheme)
 
 	// check string has authority info or not
 	const hasAuthority = remaining.substr(0, 3) === '://'
@@ -41,15 +33,15 @@ const parser = input => {
 		output.path = path
 	} else {
 		// if authority extract domain, port and path
-		output.authority = path
-		let authPath
-		const [domain, port] = path
-			.replace(/[/^](.*)/, match => {
-				authPath = match
-				return ''
-			})
-			.split(':')
-		output.path = authPath
+
+		const authority = path.replace(/[/^](.*)/, match => {
+			output.path = match
+			return ''
+		})
+
+		const [domain, port] = authority.split(':')
+
+		output.authority = authority
 		output.domain = domain
 		output.port = port
 	}
@@ -72,11 +64,7 @@ const parseWithRegex = input => {
 
 		output = { scheme, path, fragment, authority }
 
-		queryString &&
-			(output.query = queryString.split('&').map(q => {
-				const [key, value] = q.split('=')
-				return { [key]: value }
-			}))
+		queryString && (output.query = queryString.split('&'))
 
 		if (authority) {
 			const [domain, port] = authority.split(':')

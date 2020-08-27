@@ -6,11 +6,11 @@
 	"license": "MIT",
 	"scripts": {
 		"test": "jest --watchAll",
-		"test:1": "jest __tests__/uriParser.test.js"
+		"test:1": "jest tests/uriParser.test.js"
 	},
 	"jest": {
 		"testMatch": [
-			"**/__tests__/*.test.js"
+			"**/tests/*.test.js"
 		]
 	},
 	"dependencies": {
