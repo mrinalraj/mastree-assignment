@@ -1,0 +1,19 @@
+{
+	"name": "mastree",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Mrinal Raj <raj.mrnl@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"test": "jest --watchAll",
+		"test:1": "jest __tests__/uriParser.test.js"
+	},
+	"jest": {
+		"testMatch": [
+			"**/__tests__/*.test.js"
+		]
+	},
+	"dependencies": {
+		"jest": "^26.4.2"
+	}
+}
