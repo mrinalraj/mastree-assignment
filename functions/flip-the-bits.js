@@ -60,6 +60,9 @@ const generateSourceFromTarget = target => {
 			init = flipColumn(init, number)
 		}
 	})
+	if (init.toString() === target.toString()) {
+		return generateSourceFromTarget(target)
+	}
 	return init
 }
 
@@ -70,7 +73,8 @@ const play = async () => {
 		moves = 0
 	// read user ipunt for size of board limited max to 20
 	readline.question('Enter size of the board (max 20) : \t', size => {
-		// create target and board
+		// create target and board until they are different
+
 		target = generateRandomTarget(parseInt(size))
 		board = generateSourceFromTarget(target)
 
@@ -128,6 +132,4 @@ const play = async () => {
 	}
 }
 
-play()
-
-module.exports = { flipRow, flipColumn, play }
+module.exports = { generateRandomTarget, generateSourceFromTarget, flipRow, flipColumn, play }
