@@ -1,5 +1,7 @@
 const { parser, parseWithRegex } = require('../functions/uriParser')
 
+// each inner array is [input,output]
+
 const testCases = [
 	[
 		'foo://example.com:8042/over/there?name=ferret#nose',
@@ -55,15 +57,7 @@ const testCases = [
 			fragment: 'header1',
 		},
 	],
-	[
-		'ldap://[2001:db8::7]/c=GB?objectClass=one&objectClass=two',
-		{
-			scheme: 'ldap',
-			path: '/c=GB',
-			authority: '[2001:db8::7]',
-			query: ['objectClass=one', 'objectClass=two'],
-		},
-	],
+
 	[
 		'mailto:John.Doe@example.com',
 		{

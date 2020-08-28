@@ -8,8 +8,10 @@
 		"test": "jest --watchAll",
 		"test:1": "jest tests/uriParser.test.js",
 		"test:2": "jest tests/flip-the-bits.test.js --detectOpenHandles",
-		"run:parse": "node -p \"require('./functions/uriParser.js').parser(process.argv[1])\"",
-		"run:flip": "node -p \"require('./functions/flip-the-bits.js').play()\""
+		"test:3": "jest tests/staircase.test.js --detectOpenHandles",
+		"parser": "node -p \"require('./functions/uriParser.js').parser(process.argv[1])\"",
+		"flip": "node -p \"require('./functions/flip-the-bits.js').play()\"",
+		"climb": "node -p \"require('./functions/staircase.js').climbStaircase()\""
 	},
 	"jest": {
 		"testMatch": [
